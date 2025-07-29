@@ -1,8 +1,12 @@
-import { test, expect } from '@playwright/test';
+import { test } from "@playwright/test";
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test("run for desktop", async ({ page }) => {
+  test.setTimeout(60 * 60 * 1000); // set timeout to 1 hour
+  await page.goto("https://sdk-app.pages.dev/");
+  await page.getByRole("button", { name: "Start Session" }).click();
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+  // wait for half hour
+  await page.waitForTimeout(30 * 60 * 1000);
+
+  await page.getByRole("button", { name: "Leave session" }).click();
 });
