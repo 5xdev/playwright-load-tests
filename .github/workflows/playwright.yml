@@ -11,9 +11,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
-      # matrix:
-      #   os: [ubuntu-latest, windows-latest, macos-latest]
-      #   browser: [chromium, firefox, webkit]
+      matrix:
+        os: [ubuntu-latest]
+        browser: [chromium]
+        # os: [ubuntu-latest, windows-latest, macos-latest]
+        # browser: [chromium, firefox, webkit]
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
