@@ -9,12 +9,15 @@ test("run for desktop", async ({ page }) => {
   await page.goto(`https://callt.pages.dev/?sessionId=${sessionId}&displayName=${displayName}`);
   await page.getByRole("button", { name: "Start Session" }).click();
 
-  await page.waitForTimeout(30 * 1000);
+  await page.waitForFunction(() => {
+    return (window as any).isUsingTurn === true;
+  }, { timeout: 5 * 60 * 1000 });
 
   await page.screenshot({ path: 'fullpage.png', fullPage: true });
 
   // wait for half hour
   // await page.waitForTimeout(30 * 60 * 1000);
 
+  await page.waitForTimeout(10 * 1000);
   await page.getByRole("button", { name: "Leave session" }).click();
 });
