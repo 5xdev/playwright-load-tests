@@ -1,9 +1,9 @@
 name: Playwright Tests
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
   workflow_dispatch:
 jobs:
   test:
@@ -14,23 +14,55 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         browser: [chromium]
-        session: ["s001", "s002"]
+        session:
+          [
+            "s001",
+            "s002",
+            "s003",
+            "s004",
+            "s005",
+            "s006",
+            "s007",
+            "s008",
+            "s009",
+            "s010",
+            "s011",
+            "s012",
+            "s013",
+            "s014",
+            "s015",
+            "s016",
+            "s017",
+            "s018",
+            "s019",
+            "s020",
+            "s021",
+            "s022",
+            "s023",
+            "s024",
+            "s025",
+            "s026",
+            "s027",
+            "s028",
+            "s029",
+            "s030",
+          ]
         user: ["u001", "u002"]
         # os: [ubuntu-latest, windows-latest, macos-latest]
         # browser: [chromium, firefox, webkit]
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
-    - name: Install dependencies
-      run: npm ci
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-    - name: Run Playwright tests
-      run: SESSION_ID=${{ matrix.session }} USERNAME=${{ matrix.user }} npx playwright test
-    - name: Upload screenshot
-      uses: actions/upload-artifact@v4
-      with:
-        name: playwright-screenshot
-        path: fullpage-${{ matrix.os }}-${{ matrix.browser }}-${{ matrix.session }}-${{ matrix.user }}.png
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: SESSION_ID=${{ matrix.session }} USERNAME=${{ matrix.user }} npx playwright test
+      - name: Upload screenshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-screenshot
+          path: fullpage-${{ matrix.os }}-${{ matrix.browser }}-${{ matrix.session }}-${{ matrix.user }}.png
