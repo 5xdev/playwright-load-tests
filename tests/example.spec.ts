@@ -23,7 +23,7 @@ test("run for desktop", async ({ page }) => {
   await page.screenshot({ path: "fullpage.png", fullPage: true });
 
   // wait for half hour
-  // await page.waitForTimeout(30 * 60 * 1000);
+  await page.waitForTimeout(60 * 60 * 1000);
 
   await page.waitForTimeout(10 * 1000);
   await page.getByRole("button", { name: "Leave session" }).click();
