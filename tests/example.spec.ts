@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
 
 test("run for desktop", async ({ page }) => {
-  test.setTimeout(30 * 60 * 1000); // set timeout to 30 minutes
+  test.setTimeout(60 * 60 * 1000); // set timeout to 1 hour
 
   const sessionId = process.env.SESSION_ID;
   const displayName = process.env.DISPLAY_NAME;
@@ -23,7 +23,7 @@ test("run for desktop", async ({ page }) => {
   await page.screenshot({ path: "fullpage.png", fullPage: true });
 
   // wait for half hour
-  await page.waitForTimeout(60 * 60 * 1000);
+  await page.waitForTimeout(30 * 60 * 1000);
 
   await page.waitForTimeout(10 * 1000);
   await page.getByRole("button", { name: "Leave session" }).click();
