@@ -1,13 +1,13 @@
 import { test } from "@playwright/test";
 
 test("run for desktop", async ({ page }) => {
-  test.setTimeout(60 * 60 * 1000); // set timeout to 1 hour
+  test.setTimeout(30 * 60 * 1000); // set timeout to 30 minutes
 
   const sessionId = process.env.SESSION_ID;
   const displayName = process.env.DISPLAY_NAME;
 
   await page.goto(
-    `https://callt.pages.dev/?sessionId=${sessionId}&displayName=${displayName}`
+    `https://sdk-app.pages.dev/?sessionId=${sessionId}&displayName=${displayName}`
   );
   await page.waitForTimeout(1000);
   await page.getByRole("button", { name: "Start Session" }).click();
