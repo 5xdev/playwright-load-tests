@@ -15,7 +15,7 @@ jobs:
         os: [ubuntu-latest]
         browser: [chromium]
         session: [
-            "cc-a0ff81fe0626",
+            "s001",
             # "s002",
             # "s003",
             # "s004",
